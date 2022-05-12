@@ -15,20 +15,23 @@ const productSchema = mongoose.Schema({
   avatar:{
     type:String
   },
+  phone:{
+    type:String
+  }, 
+  email:{
+    type:String
+  },
   millage:{
     type:String
   }, 
-   user:[
-    {
-      type:mongoose.Schema.Types.ObjectId,
-      ref:"users"
-    }
-  ],
-
+  person:{
+     type:mongoose.Schema.Types.ObjectId,
+    ref:"users"
+  }
 },
 {
   timestamps:true,
 }
 )
 
-module.exports = mongoose.model("allProduct", productSchema)
+module.exports = mongoose.model("allProducts", productSchema)
