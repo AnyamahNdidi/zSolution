@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
 app.use("/api", require("./router/router"))
+// app.use("/user", require("./router/userRouter"))
 
 app.listen(port, ()=>{
   console.log(`up and runnng ${port}`)
