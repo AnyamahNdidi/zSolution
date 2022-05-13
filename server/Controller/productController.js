@@ -7,7 +7,7 @@ const proDuct =async (req, res)=> {
   try{
     const id = req.params.userId
     
-    const {make, model, price, millage, phone, email} = req.body
+    const {make, model, price, millage, phone, email,decs} = req.body
 
     const image = await cloudinary.uploader.upload(req.file.path)
 
@@ -18,6 +18,7 @@ const proDuct =async (req, res)=> {
        millage,
        phone,
        email,
+       decs,
        avatar:image.secure_url
     })
     const dUser = await userShema.findById(id)
@@ -28,12 +29,10 @@ const proDuct =async (req, res)=> {
 
     dUser.product.push(createUser)
    await  dUser.save()
-
-
-    res.status(201).json({ 
-      message:"product uplaoded",
-      data:createUser
-    })
+  res.status(201).json({
+    message : "product created",
+    product:createUser
+  })
 
   }catch(error){
     res.status(400).json({ 
@@ -59,7 +58,7 @@ const getAll = async (req, res)=>{
 
 const getOnePro = async (req, res)  =>{
   try{
-    const getOne = await productSchema.findById(req.params.id);
+    const getOne = await productSchema.findById(req.params.id).populate("person");
 
     if(getOne.length < 1){
       res.status(404).json({

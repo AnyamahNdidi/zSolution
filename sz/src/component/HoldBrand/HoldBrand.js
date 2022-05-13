@@ -4,6 +4,9 @@ import {Box, Typography, Button, Card, InputLabel, MenuItem,
   FormControl,Select} from "@mui/material"
 import img from "./q.jpg"
 import pix from "./3.jpg"
+import axios from "axios"
+import {Link} from  "react-router-dom"
+
 
 
 const useStyles = makeStyles((theme)=>({
@@ -127,6 +130,20 @@ const useStyles = makeStyles((theme)=>({
 
 function HoldBrand() {
    const classes = useStyles()
+    const [dataFile, setDatafile]  = React.useState([])
+
+     const fetchData = async ()=>{
+    const res =await axios.get("https://zzsolution.herokuapp.com/api//product/all")
+    console.log(res.data.data);
+    setDatafile(res.data.data)
+    
+
+  }
+
+   React.useEffect(()=>{
+    fetchData()
+   
+  },[])
   return (
     <div>
       <Box className={classes.root}>
@@ -138,138 +155,45 @@ function HoldBrand() {
              <div style={{width:"70%", height:"auto", display:"flex"}}>
                 <Typography>Most Search</Typography>
               </div>
-        <Box className="ButtonBox">
+        {/* <Box className="ButtonBox">
           <Button sx={{backgroundColor:"#1c2780", color:"white", width:"170px", height:"55px" }}>Toyota</Button>
           <Button sx={{backgroundColor:"#1c2780", color:"white", width:"170px", height:"55px"}}>KAI</Button>
           <Button sx={{backgroundColor:"#1c2780", color:"white", width:"170px",  height:"55px"}}>Lexus</Button>
           <Button sx={{backgroundColor:"#1c2780", color:"white", width:"170px",  height:"55px"}}>Benz</Button>
-        </Box>
+        </Box> */}
         <div style={{width:"70%", height:"auto", display:"flex", marginTop:"20px"}}>
                 <Typography>All Cars</Typography>
               </div>
         <Box  className="allProducts">
-          <Card className="productCard">
+         
+          
+         {
+           dataFile.map((props)=>(
+             <div>
+              <Link to={`/details/${props._id}`}>>
+            <Card className="productCard">
             <Box className="title">
-              <Typography>Toyota</Typography>
+              <Typography>{props.make}</Typography>
               
               </Box>
-            <Box className="pix"> <img src={img} style={{width:"100%", height:"100%", objectFit:"cover"}}/></Box>
+            <Box className="pix"> <img src={props.avatar} style={{width:"100%", height:"100%", objectFit:"cover"}}/></Box>
             <Box className="price">
-              <Typography>₦2,000,000</Typography>
+              <Typography>{props.price}</Typography>
               
               </Box>
-            <Box className="mileage">millage: 283949</Box>
-            <Box className="year">year: 2003</Box>
+            <Box className="mileage">millage: {props.millage}</Box>
+            <Box className="year">model: {props.model}</Box>
 
 
           </Card>
-          <Card className="productCard">
-            <Box className="title">
-              <Typography>Toyota</Typography>
-              
-              </Box>
-            <Box className="pix"> <img src={img} style={{width:"100%", height:"100%", objectFit:"cover"}}/></Box>
-            <Box className="price">
-              <Typography>₦2,000,000</Typography>
-              
-              </Box>
-            <Box className="mileage">millage: 283949</Box>
-            <Box className="year">year: 2003</Box>
-
-
-          </Card>
-          <Card className="productCard">
-            <Box className="title">
-              <Typography>Toyota</Typography>
-              
-              </Box>
-            <Box className="pix">
-              <img src={img} style={{width:"100%", height:"100%", objectFit:"cover"}}/>
-            </Box>
-            <Box className="price">
-              <Typography>₦2,000,000</Typography>
-              
-              </Box>
-            <Box className="mileage">millage: 283949</Box>
-            <Box className="year">year: 2003</Box>
-
-
-          </Card>
-          <Card className="productCard">
-            <Box className="title">
-              <Typography>Toyota</Typography>
-              
-              </Box>
-            <Box className="pix"> <img src={img} style={{width:"100%", height:"100%", objectFit:"cover"}}/></Box>
-            <Box className="price">
-              <Typography>₦2,000,000</Typography>
-              
-              </Box>
-            <Box className="mileage">millage: 283949</Box>
-            <Box className="year">year: 2003</Box>
-
-
-          </Card>
-          <Card className="productCard">
-            <Box className="title">
-              <Typography>Toyota</Typography>
-              
-              </Box>
-            <Box className="pix"> <img src={img} style={{width:"100%", height:"100%", objectFit:"cover"}}/></Box>
-            <Box className="price">
-              <Typography>₦2,000,000</Typography>
-              
-              </Box>
-            <Box className="mileage">millage: 283949</Box>
-            <Box className="year">year: 2003</Box>
-
-
-          </Card>
-          <Card className="productCard">
-            <Box className="title">
-              <Typography>Toyota</Typography>
-              
-              </Box>
-            <Box className="pix"> <img src={img} style={{width:"100%", height:"100%", objectFit:"cover"}}/></Box>
-            <Box className="price">
-              <Typography>₦2,000,000</Typography>
-              
-              </Box>
-            <Box className="mileage">millage: 283949</Box>
-            <Box className="year">year: 2003</Box>
-
-
-          </Card>
-          <Card className="productCard">
-            <Box className="title">
-              <Typography>Toyota</Typography>
-              
-              </Box>
-            <Box className="pix"> <img src={img} style={{width:"100%", height:"100%", objectFit:"cover"}}/></Box>
-            <Box className="price">
-              <Typography>₦2,000,000</Typography>
-              
-              </Box>
-            <Box className="mileage">millage: 283949</Box>
-            <Box className="year">year: 2003</Box>
-
-
-          </Card>
-          <Card className="productCard">
-            <Box className="title">
-              <Typography>Toyota</Typography>
-              
-              </Box>
-            <Box className="pix"> <img src={img} style={{width:"100%", height:"100%", objectFit:"cover"}}/></Box>
-            <Box className="price">
-              <Typography>₦2,000,000</Typography>
-              
-              </Box>
-            <Box className="mileage">millage: 283949</Box>
-            <Box className="year">year: 2003</Box>
-
-
-          </Card>
+          </Link>
+          </div>
+           ))
+         }
+         
+          
+         
+          
         </Box>
           </Box>
             
