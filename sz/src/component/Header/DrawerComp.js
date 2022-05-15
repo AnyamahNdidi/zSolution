@@ -2,6 +2,7 @@ import React from 'react'
 import {Drawer, List,ListItem,ListItemButton,ListItemIcon,ListItemText, IconButton} from "@mui/material"
 import MenuIcon from '@mui/icons-material/Menu';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import {NavLink} from "react-router-dom"
 
 function DrawerComp() {
   const [openDrawer, setOpenDrawer] = React.useState(false)
@@ -10,25 +11,20 @@ function DrawerComp() {
            <Drawer open={openDrawer} onClose={()=> setOpenDrawer(false)}>
         <List>
           <ListItemButton onClick={()=> setOpenDrawer(false)}>
+            <NavLink to="/" style={{color:"white"}} >
             <ListItemIcon>
               <ListItemText>Home</ListItemText>
             </ListItemIcon>
+            </NavLink>
           </ListItemButton>
           <ListItemButton onClick={()=> setOpenDrawer(false)}>
+            <NavLink to="/post" style={{marginTop:"10px"}}>
             <ListItemIcon>
-              <ListItemText>Bio</ListItemText>
+              <ListItemText>Uplaod Your Product</ListItemText>
             </ListItemIcon>
+            </NavLink>
           </ListItemButton>
-          <ListItemButton onClick={()=> setOpenDrawer(false)}>
-            <ListItemIcon>
-              <ListItemText>Works</ListItemText>
-            </ListItemIcon>
-          </ListItemButton>
-          <ListItemButton onClick={()=> setOpenDrawer(false)}>
-            <ListItemIcon>
-              <ListItemText>Contact</ListItemText>
-            </ListItemIcon>
-          </ListItemButton>
+         
 
         </List>
         </Drawer>

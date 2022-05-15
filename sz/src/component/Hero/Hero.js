@@ -3,6 +3,7 @@ import {makeStyles} from "@mui/styles"
 import {Box, Typography, Button, Card, InputLabel, MenuItem, 
   FormControl,Select} from "@mui/material"
 import img from "./3.png"
+import {useNavigate} from "react-router-dom"
 
 const useStyles = makeStyles((theme)=>({
 
@@ -122,6 +123,7 @@ const useStyles = makeStyles((theme)=>({
 
 function Hero() {
   const classes = useStyles()
+   const hist = useNavigate()
   return (
     <div>
       <Box className={classes.root}>
@@ -154,9 +156,9 @@ function Hero() {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={10}>Toyota</MenuItem>
+          <MenuItem value={20}>Benz</MenuItem>
+          {/* <MenuItem value={30}>Thirty</MenuItem> */}
         </Select>
       </FormControl>
                <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
@@ -170,9 +172,9 @@ function Hero() {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={10}>2009</MenuItem>
+          <MenuItem value={20}>2008</MenuItem>
+          <MenuItem value={30}>2003</MenuItem>
         </Select>
       </FormControl>
                <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
@@ -186,14 +188,14 @@ function Hero() {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={10}>200000</MenuItem>
+          <MenuItem value={20}>400000</MenuItem>
+          <MenuItem value={30}>678999</MenuItem>
         </Select>
       </FormControl>
       
 <div style={{width:"100%", height:"auto", display:"flex", justifyContent:"center", alignItems:"center",}}>
-     <Button sx={{backgroundColor:"#1c2780", color:"white", width:"50%"}}>Search</Button>
+     <Button sx={{backgroundColor:"#1c2780", color:"white", width:"50%"}} >Search</Button>
      </div>
             </Card>
           </Box>

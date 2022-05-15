@@ -99,6 +99,19 @@ const getUser = async (req, res)=>{
   }
 }
 
+const getUserOne = async (req, res)=>{
+  try{
+    const getDOne = await userSchema.findById(req.params.id).populate("product")
+    res.status(201).json({
+      message : "user found",
+      data: getDOne
+    })
+
+  }catch(error){
+    res.status(400).json({message: error.message})
+  }
+}
+
 const deleteUser = async (req, res) => {
   try {
     const deleteFunc = await userSchema.findByIdAndDelete(req.params.id);
@@ -119,5 +132,6 @@ module.exports = {
   Register,
   LoginUser,
   getUser,
-  deleteUser
+  deleteUser,
+  getUserOne
 }

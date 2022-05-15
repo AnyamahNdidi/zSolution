@@ -10,7 +10,7 @@ const productSchema = mongoose.Schema({
     type:String
   }, 
   price:{
-    type:Number
+    type:String
   },
   avatar:{
     type:String
@@ -19,6 +19,9 @@ const productSchema = mongoose.Schema({
     type:String
   }, 
   email:{
+    type:String
+  },
+  decs:{
     type:String
   },
   millage:{

@@ -7,6 +7,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import HomeMaxIcon from '@mui/icons-material/HomeMax';
 import BiotechIcon from '@mui/icons-material/Biotech';
 import CodeIcon from '@mui/icons-material/Code';
+import {NavLink} from "react-router-dom"
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import DrawerComp from './DrawerComp';
 
@@ -66,10 +67,19 @@ function Header() {
             ) : (
               <>
               <Tabs sx={{height:"55px", }} textColor="white" value={value} onChange={(e, value)=>  setValue(value)} >
+             <NavLink to="/" style={{color:"white"}} >
+               <Tab  iconPosition="start" label="Home" />
+             </NavLink>
+             <NavLink to="/view" style={{color:"white"}} >
+               <Tab  iconPosition="start" label="View And Delete" />
+             </NavLink>
             
-            <Tab  iconPosition="start" label="Home" />
-            <Tab  iconPosition="start" label="All cars"/>
-             <Button variant="contained">Upload Your Car For Sales</Button>
+             <NavLink to="/post" style={{marginTop:"10px"}}>
+              <Button variant="contained">Upload Your Car For Sales</Button>
+             </NavLink>
+           
+            
+             
           </Tabs>
      
               </>
