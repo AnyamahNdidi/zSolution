@@ -24,12 +24,15 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {useNavigate} from "react-router-dom"
 import Swal from 'sweetalert2'
 import axios from "axios"
+import Loading from "./Loading"
+
 
 
 
 function Login() {
 
    const hist = useNavigate()
+    const [loading, setLoading] = React.useState(false)
 
     const userModel = yup.object().shape({
  
@@ -43,6 +46,7 @@ function Login() {
 
    const submit = handleSubmit( async (value)=>{
     console.log(value)
+    setLoading(true)
     const {name, email, password}  = value
     console.log(name)
 
@@ -56,6 +60,7 @@ function Login() {
             icon: "success",
             button: "ok",
           })
+          
 
         }
     }) .then((value) => {
@@ -70,6 +75,7 @@ function Login() {
   // footer: '<a href="">Why do I have this issue?</a>'
 })
         // setUserError(JSON.stringify(error.response.data.message))
+         setLoading(false)
       }
 
     }); 
@@ -160,6 +166,9 @@ function Login() {
       
       </Container>
         </Card>
+          {
+						 loading ?  <Loading loading={loading}/> : null
+					 }
 
       </HolderLogin>
 

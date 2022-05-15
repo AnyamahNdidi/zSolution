@@ -27,6 +27,7 @@ import {Card,
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import swal from 'sweetalert'
 import axios from "axios"
+import Loading from "./Loading"
 
 
 
@@ -52,6 +53,7 @@ function Signup() {
     const myNavigation = useNavigate()
     const [member, setMember] = React.useState(false);
     const [dmember, dsetMember] = React.useState(false);
+    const [loading, setLoading] = React.useState(false)
 
     const handleChange = ()=>{
       setMember(true)
@@ -66,9 +68,10 @@ function Signup() {
 
    const submit = handleSubmit( async (value)=>{
     console.log(value)
+   
     const {name, email, password}  = value
     console.log(name)
-
+  setLoading(true)
     axios.post("https://zzsolution.herokuapp.com/api/reg", value).then((response) => {
       console.log(response.data.data)
       localStorage.setItem("userInfo", JSON.stringify(response.data.data))
@@ -79,11 +82,13 @@ function Signup() {
             icon: "success",
             button: "ok",
           })
+              setLoading(false)
 
         }
-    }) .then((value) => {
+    }).then((value) => {
             swal(hist("/user"));
           }); 
+
    })
 
 
@@ -194,7 +199,9 @@ function Signup() {
       
       </Container>
         </Card>
-
+       {
+						 loading ?  <Loading loading={loading}/> : null
+					 }
       </HolderLogin>
 
 

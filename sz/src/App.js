@@ -46,9 +46,9 @@ function App() {
          
           }/>
           <Route path="/details/:id" element={
-          <PrivateRoute>
+          
                <DetailPage/>
-          </PrivateRoute>
+          
          }/>
           </Routes>
           </Router>
